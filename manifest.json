@@ -1,0 +1,14 @@
+{
+  "name": "Flow Label",
+  "id": "1243154430301893676",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": [
+      "https://cdn.jsdelivr.net",
+      "https://rsms.me"
+    ]
+  }
+}
