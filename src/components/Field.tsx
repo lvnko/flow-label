@@ -12,7 +12,7 @@ type FieldProps = {
 const Field: FunctionComponent<FieldProps> = ({ fieldId, label, fieldChanged, value, placeholder }): ReactElement => {
     
     return (
-        <div key={fieldId}>
+        <div key={fieldId} className={'input-row'}>
             <label
                 htmlFor={`${fieldId}-input`}
             >{label}</label>

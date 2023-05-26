@@ -17,8 +17,8 @@ const Options: FunctionComponent<OptionsProps> = ({ fieldId, label, optionList, 
     },[])
     /* function body */ 
     return (
-        <div key={fieldId}>
-            <p>{label}</p>
+        <div key={fieldId} className={'input-row-radio'}>
+            <p className={'label'}>{label}</p>
             {optionList.map((opt, index) => {
                 return [
                     <input

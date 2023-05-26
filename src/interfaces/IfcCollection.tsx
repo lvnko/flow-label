@@ -10,8 +10,7 @@ export interface IFlowResponse {
 export interface IOptionData {
     name: string,
     label: string,
-    value: number,
-    checked: boolean
+    value: number
 }
 
 export interface IOptionsData extends Array<IOptionData>{}

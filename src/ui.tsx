@@ -11,26 +11,36 @@ type IOptionsData = IOptionData[]
 function App() {
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const optionsDataList: IOptionsData = [{
-    name: "forth", label: "Forward",
-    value: 1, checked: true
+  const directionOptionsDataList: IOptionsData = [{
+    name: "back", label: "Backward",
+    value: -1
   },{
     name: "divert", label: "Diverted",
-    value: 2, checked: false
+    value: 2
   },{
-    name: "back", label: "Backward",
-    value: -1, checked: false
+    name: "forth", label: "Forward",
+    value: 1
   }]; 
-
-
-  // const [triggerEvent, setTriggerEvent] = React.useState<string>();
-  const [responses, setResponses] = React.useState<IFlowResponse[]>([{
+  const destTypeOptionsDataList: IOptionsData = [{
+    name: "section", label: "Section",
+    value: 0
+  },{
+    name: "screen", label: "Screen",
+    value: 1
+  }];
+  const defaultResponse: IFlowResponse = {
     response: "",
     // withCondition: false,
     condition: "",
     direction: 1,
     destinationLabel: "",
     destinationType: 0
+  };
+
+
+  // const [triggerEvent, setTriggerEvent] = React.useState<string>();
+  const [responses, setResponses] = React.useState<IFlowResponse[]>([{
+    ...defaultResponse
   }]);
 
   const fieldChanged = (fieldId, value) => {
@@ -39,6 +49,11 @@ function App() {
     const fieldIdx = responseFieldKeys[1];
     let newResponses = [...responses];
     newResponses[responseIdx][fieldIdx] = value;
+    setResponses(newResponses);
+  }
+
+  const addBlankResponseRecord = () => {
+    let newResponses = [...responses, { ...defaultResponse }];
     setResponses(newResponses);
   }
 
@@ -65,13 +80,27 @@ function App() {
         {/* <img src={require("./logo.svg")} /> */}
         <h2>Flow Label Generator</h2>
       </header>
-      <section>
-        <label htmlFor="triggerEvent">Event / Action</label>
-        <input id="triggerEvent" type="text" ref={inputRef} />
+      <section className={'pb-1'}>
+        <div className={'input-row ph-hf1'}>
+          <label htmlFor="triggerEvent">Event / Action</label>
+          <input id="triggerEvent" type="text" ref={inputRef} placeholder="ie. Tap on Submit" />
+        </div>
         {responses.map((r, index) => {
           return (
-            <div key={`response-${index}`}>
-              {/* <p>Response</p> */}
+            <div key={`response-${index}`} className={'response-row ph-hf1'}>
+              <div className={'ctrl-row pv-hf1'}>
+                <span>{index+1}</span>
+                <a className={'tappable-icon'}>
+                  <img src={require("./assets/icon-trash-invert.svg")} />
+                </a>
+              </div>
+              <Field
+                fieldId={`${index}:condition`}
+                label={'Condition'}
+                placeholder={'ie. if...'}
+                value={r.response}
+                fieldChanged={fieldChanged}
+              />
               <Field
                 fieldId={`${index}:response`}
                 label={'Response'}
@@ -82,19 +111,42 @@ function App() {
               <Options
                 fieldId={`${index}:direction`}
                 label={'Direction'}
-                optionList={optionsDataList}
+                optionList={directionOptionsDataList}
                 selectedValue={r.direction}
                 fieldChanged={fieldChanged}
               />
+              {r.direction === 2 && [
+                <Field
+                  key={`${index}:destinationLabel`}
+                  fieldId={`${index}:destinationLabel`}
+                  label={'Destination Label'}
+                  placeholder={'ie. A1.2.?'}
+                  value={r.destinationLabel}
+                  fieldChanged={fieldChanged}
+                />,
+                <Options
+                  key={`${index}:destinationType`}
+                  fieldId={`${index}:destinationType`}
+                  label={'Destination Type'}
+                  optionList={destTypeOptionsDataList}
+                  selectedValue={r.destinationType}
+                  fieldChanged={fieldChanged}
+                />
+              ]}
             </div>
           )
         })}
+        {responses.length < 5 && (
+          <a className={'tappable-row ph-hf1 pv-hf1'} onClick={addBlankResponseRecord}>
+            <span>+ Add Response</span>
+          </a>
+        )}
       </section>
       <footer>
+        <button onClick={onCancel}>Cancel</button>
         <button className="brand" onClick={onCreate}>
           Create
         </button>
-        <button onClick={onCancel}>Cancel</button>
       </footer>
     </main>
   );
