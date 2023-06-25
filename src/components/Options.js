@@ -1,5 +1,7 @@
 import * as React from "react";
+import f18N from "../contexts/f18N";
 const Options = ({ fieldId, label, optionList, fieldChanged, selectedValue }) => {
+    const { t } = React.useContext(f18N);
     React.useEffect(() => {
         console.log("optionList : ", optionList);
     }, []);
@@ -11,7 +13,7 @@ const Options = ({ fieldId, label, optionList, fieldChanged, selectedValue }) =>
                 React.createElement("input", { key: `${fieldId}-${opt.name}-radio`, id: `${fieldId}-${opt.name}`, name: `${fieldId}-flow-direction`, type: "radio", value: opt.value, onChange: (e) => {
                         fieldChanged(fieldId, +e.target.value);
                     }, checked: selectedValue === opt.value }),
-                React.createElement("label", { key: `${opt.name}-radio-label`, htmlFor: `${fieldId}-${opt.name}` }, opt.label)
+                React.createElement("label", { key: `${opt.name}-radio-label`, htmlFor: `${fieldId}-${opt.name}` }, t(`label.${opt.name}`))
             ];
         })));
 };

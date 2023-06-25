@@ -4,7 +4,8 @@ export interface IFlowResponse {
     condition: string,
     direction: number,
     destinationLabel: string,
-    destinationType: number
+    destinationType: number,
+    errors: string[]
 }
 
 export interface IOptionData {
@@ -25,4 +26,19 @@ export interface IInputData {
     id: string,
     label: string,
     value: boolean
+}
+
+export interface TextDisplayLib {
+    condition: TextNode,
+    response: TextNode,
+    tagNum: TextNode
+}
+
+export interface If18NContext {
+    dict: any,
+    setDict: (dict: any) => void,
+    locale: string,
+    setLocale: (locale: string) => void,
+    t: (key: string) => any
+    // setLocale: React.Dispatch<React.SetStateAction<string>>
 }

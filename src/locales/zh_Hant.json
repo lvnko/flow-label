@@ -1,0 +1,31 @@
+{
+    "title": "使用流程標籤生成器",
+    "label": {
+        "eventAction": "事件 / 動作",
+        "condition": "條件",
+        "response": "回應",
+        "direction": "流程方向",
+        "destinationLabel": "目的地號碼",
+        "destinationType": "目的地層級",
+        "backward": "返回",
+        "diverted": "改道",
+        "forward": "前進",
+        "section": "分部",
+        "screen": "版面"
+    },
+    "placeholder": {
+        "eventAction": "例如：點擊提交",
+        "condition": "例如：若用戶已證實為會員",
+        "response": "例如：帶往登入頁面",
+        "destinationLabel": "例如：A1.2.?"
+    },
+    "common": {
+        "cancel": "取消",
+        "create": "創建",
+        "addResponse": "+ 加入其他回應",
+        "optional": "(選填)"
+    },
+    "error": {
+        "empty": "此框需要輸入資料。"
+    }
+}

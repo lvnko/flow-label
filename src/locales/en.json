@@ -1,0 +1,31 @@
+{
+    "title": "Flow Label Generator",
+    "label": {
+        "eventAction": "Event / Action",
+        "condition": "Condition",
+        "response": "Response",
+        "direction": "Direction",
+        "destinationLabel": "Destination Number",
+        "destinationType": "Destination Type",
+        "back": "Backward",
+        "divert": "Diverted",
+        "forth": "Forward",
+        "section": "Section",
+        "screen": "Screen"
+    },
+    "placeholder": {
+        "eventAction": "e.g. Tap on Submit",
+        "condition": "e.g. if...",
+        "response": "e.g. Direct to Login page...",
+        "destinationLabel": "e.g. A1.2.?"
+    },
+    "common": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "addResponse": "+ Add Response",
+        "optional": "(Optional)"
+    },
+    "error": {
+        "empty": "This filed input is required."
+    }
+}

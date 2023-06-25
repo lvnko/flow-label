@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => ({
   mode: argv.mode === 'production' ? 'production' : 'development',
@@ -39,7 +40,14 @@ module.exports = (env, argv) => ({
   },
 
   // Webpack tries these extensions for you if you omit the extension like "import './file'"
-  resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
+  resolve: {
+    modules: [
+      path.resolve('src'),
+      path.resolve('src/locales'),
+      path.resolve('node_modules')
+    ],
+    extensions: ['.tsx', '.ts', '.jsx', '.js']
+  },
 
   output: {
     filename: (pathData) => {
@@ -67,5 +75,10 @@ module.exports = (env, argv) => ({
       htmlMatchPattern: [/ui.html/],
       scriptMatchPattern: [/.js$/],
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/locales/', to: 'locales/' }
+      ]
+    })
   ],
 });

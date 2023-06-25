@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FunctionComponent, ReactElement } from 'react';
 import { IOptionData } from '../interfaces/IfcCollection';
+import f18N from "../contexts/f18N";
 
 type OptionsProps = {
     fieldId: string,
@@ -10,7 +11,12 @@ type OptionsProps = {
     optionList: IOptionData[] 
 }
 
-const Options: FunctionComponent<OptionsProps> = ({ fieldId, label, optionList, fieldChanged, selectedValue }): ReactElement => { 
+const Options: FunctionComponent<OptionsProps> = ({
+    fieldId, label, optionList,
+    fieldChanged, selectedValue
+}): ReactElement => { 
+
+    const { t } = React.useContext(f18N);
 
     React.useEffect(()=>{
         console.log("optionList : ", optionList);
@@ -34,7 +40,7 @@ const Options: FunctionComponent<OptionsProps> = ({ fieldId, label, optionList, 
                     <label
                         key={`${opt.name}-radio-label`}
                         htmlFor={`${fieldId}-${opt.name}`}
-                    >{opt.label}</label>
+                    >{t(`label.${opt.name}`)}</label>
                 ]
             })}
             {/* <p>Click: {click}</p>

@@ -1,0 +1,31 @@
+{
+    "title": "使用流程标签生成器",
+    "label": {
+        "eventAction": "事件 / 动作",
+        "condition": "条件",
+        "response": "回应",
+        "direction": "流程方向",
+        "destinationLabel": "目的地号码",
+        "destinationType": "目的地层级",
+        "backward": "返回",
+        "diverted": "改道",
+        "forward": "前进",
+        "section": "分部",
+        "screen": "版面"
+    },
+    "placeholder": {
+        "eventAction": "例如：点击提交",
+        "condition": "例如：若用户已证实为会员",
+        "response": "例如：带往登入页面",
+        "destinationLabel": "例如：A1.2.?"
+    },
+    "common": {
+        "cancel": "取消",
+        "create": "创建",
+        "addResponse": "+ 加入其他回应",
+        "optional": "(选填)"
+    },
+    "error": {
+        "empty": "此框需要输入资料。"
+    }
+}
